@@ -233,19 +233,20 @@ int main()
 
         
         // cor = !cor;
-        //  Atualiza o conteúdo do display com animações
+        // Atualiza o conteúdo do display com animações
         ssd1306_fill(&ssd, !cor);                          // Limpa o display
         ssd1306_rect(&ssd, 3, 3, 122, 60, cor, !cor);      // Desenha um retângulo
-        ssd1306_line(&ssd, 3, 25, 123, 25, cor);           // Desenha uma linha
-        ssd1306_line(&ssd, 3, 37, 123, 37, cor);           // Desenha uma linha
-        ssd1306_draw_string(&ssd, "CEPEDI   TIC37", 8, 6); // Desenha uma string
-        ssd1306_draw_string(&ssd, "EMBARCATECH", 20, 16);  // Desenha uma string
-        ssd1306_draw_string(&ssd, "Cores   RGB", 10, 28);  // Desenha uma string
-        ssd1306_line(&ssd, 63, 25, 63, 60, cor);           // Desenha uma linha vertical
-        ssd1306_draw_string(&ssd, str_red, 14, 41);        // Desenha uma string
-        ssd1306_draw_string(&ssd, str_green, 14, 52);      // Desenha uma string
-        ssd1306_draw_string(&ssd, str_blue, 73, 41);       // Desenha uma string
-        ssd1306_draw_string(&ssd, str_clear, 73, 52);      // Desenha uma string
+        ssd1306_line(&ssd, 3, 14, 123, 14, cor);           // Desenha uma linha
+        ssd1306_line(&ssd, 3, 26, 123, 26, cor);           // Desenha uma linha
+        ssd1306_draw_string(&ssd, "BH1750  GY-33", 13, 6);     // Desenha uma string
+        ssd1306_draw_string(&ssd, "LUM", 8, 18);  // Desenha uma string
+        ssd1306_draw_string(&ssd, str_lux, 48, 18);  // Desenha uma string
+        ssd1306_draw_string(&ssd, "CORES", 45, 28);  // Desenha uma string
+        ssd1306_line(&ssd, 63, 37, 63, 60, cor);           // Desenha uma linha vertical
+        ssd1306_draw_string(&ssd, str_red, 14, 39);        // Desenha uma string
+        ssd1306_draw_string(&ssd, str_green, 14, 49);      // Desenha uma string
+        ssd1306_draw_string(&ssd, str_blue, 74, 39);       // Desenha uma string
+        ssd1306_draw_string(&ssd, str_clear, 74, 49);      // Desenha uma string
         ssd1306_send_data(&ssd);                           // Atualiza o display
 
         if (led_state == 0)
