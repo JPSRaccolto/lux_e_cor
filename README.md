@@ -106,10 +106,6 @@ Este projeto utiliza sensores de luz e cor para medir a iluminação ambiente (B
 6.  Coloque a Raspberry Pi Pico em modo **BOOTSEL** e utilize o ícone de **Run** para carregar o programa na placa.
 7.  Interaja com os botões e acesse o IP do dispositivo (exibido no terminal serial) para explorar todas as funcionalidades.
 
-## 📋 Descrição do Projeto
-
-O projeto **lux_e_cor** mede a iluminação ambiente com o **BH1750** (luxímetro) e a cor com o **GY-33**, exibindo os valores no **display OLED SSD1306** e representando visualmente o resultado em uma **matriz de LEDs WS2812 (5×5)**. A matriz ajusta o **brilho proporcionalmente ao lux** e usa a **cor dominante** (R, G ou B) detectada pelo GY-33. Um **LED RGB** e **botões físicos** completam a interface de usuário para sinalização de estados e interação básica.
-
 ## 🧑‍💻 Autores
 ```
 João Pedro Soares Raccolto
