@@ -21,6 +21,10 @@
 #define I2C_SDA_DISP 14
 #define I2C_SCL_DISP 15
 #define endereco 0x3C
+#define BUZZER_PIN 10
+
+
+
 // --- Definições dos Pinos ---
 const uint BTN_A_PIN = 5;  // Pino para o Botão A
 const uint RED_PIN = 13;   // Pino para o LED vermelho
@@ -94,6 +98,41 @@ void gpio_irq_handler(uint gpio, uint32_t events)
 #define GDATA_REG 0x98 //  "Green"
 #define BDATA_REG 0x9A //  "Blue"
 
+#define LUX_MIN 50     // abaixo disso = escuro
+#define LUX_MAX 700    // acima disso = claro
+
+
+
+
+
+// Inicializa pino do buzzer
+void buzzer_init() {
+    gpio_init(BUZZER_PIN);
+    gpio_set_dir(BUZZER_PIN, GPIO_OUT);
+}
+
+// Gera um tom no buzzer passivo
+void buzzer_tone(uint freq, uint duration_ms) {
+    if (freq == 0) {
+        sleep_ms(duration_ms);
+        return;
+    }
+    uint delay = 1000000 / (2 * freq);  // meio período em microssegundos
+    uint cycles = (duration_ms * 1000) / (2 * delay);
+
+    for (uint i = 0; i < cycles; i++) {
+        gpio_put(BUZZER_PIN, 1);
+        sleep_us(delay);
+        gpio_put(BUZZER_PIN, 0);
+        sleep_us(delay);
+    }
+}
+
+// Bip simples
+void buzzer_beep(uint freq, uint duration_ms) {
+    buzzer_tone(freq, duration_ms);
+    sleep_ms(50); // pequena pausa entre beeps
+}
 // Função para escrever um valor em um registro do GY-33
 void gy33_write_register(uint8_t reg, uint8_t value)
 {
@@ -185,6 +224,7 @@ void inicia_pino(){
 }
 int main()
 {
+    buzzer_init(); // inicializa o buzzer
     inicia_pino(); // Inicializa os pinos e o display
     char str_red[5];   // Buffer para armazenar a string
     char str_green[5]; 
@@ -206,7 +246,18 @@ int main()
         uint16_t lux = bh1750_read_measurement(I2C_PORT);
         printf("Lux = %d\n", lux);
 
- 
+        // --- Acionamento do buzzer conforme luminosidade ---
+if (lux < LUX_MIN) {
+    // Muito escuro → beep grave
+    buzzer_beep(400, 300);
+} else if (lux > LUX_MAX) {
+    // Muito claro → beep agudo
+    buzzer_beep(1500, 200);
+} else {
+    // Faixa normal → sem beep
+    sleep_ms(200);
+}
+
         sprintf(str_lux, "%d Lux", lux);  // Converte o inteiro em string
     // Escolhe a cor dominante
         uint16_t max_val = r;
@@ -220,6 +271,9 @@ int main()
             max_val = b;
             cor_dominante = 'B';
         }
+
+        
+
 
         uint8_t rr=0, gg=0, bb=0;
         if (cor_dominante == 'R') rr = 255;
