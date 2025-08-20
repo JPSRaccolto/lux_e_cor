@@ -141,7 +141,7 @@ Contribuições são bem-vindas! Siga os passos abaixo para contribuir:
 
 ## 📽️ Demonstração em Vídeo
 
-- Um vídeo de demonstração do projeto pode ser disponibilizado aqui: [Link para o vídeo]()
+- Um vídeo de demonstração do projeto pode ser disponibilizado aqui: [Link para o vídeo](https://drive.google.com/file/d/1n5OwWFpV1t55j5IWqhUlCTDnHYD49xRZ/view?usp=drivesdk)
 
 ## 💡 Considerações Finais
 Este projeto demonstra como a Raspberry Pi Pico W pode integrar sensores de luz e cor com saídas visuais (OLED, matriz WS2812, LED RGB, Buzzer) e controles físicos.
