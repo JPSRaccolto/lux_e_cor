@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/i2c.h"
-#include "bh1750_light_sensor.h"
-#include "ssd1306.h"
-#include "font.h"
-#include "matriz.h"
+#include "lib/bh1750_light_sensor.h"
+#include "lib/ssd1306.h"
+#include "lib/font.h"
+#include "lib/matriz.h"
 #include <math.h>
 
 // Para o sensor de luz BH1750. Endereço 0x23
